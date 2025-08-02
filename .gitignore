@@ -1,0 +1,18 @@
+# Ignore Python venv
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Model or dataset files
+*.bin
+*.pt
+*.pkl
+*.h5
+*.zip
+*.gz

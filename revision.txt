@@ -1,0 +1,348 @@
+Perfect 👍
+I’ll give you a **super clean list** of the **libraries + when to use them** for your NLP exam (1–13 problems).
+
+---
+
+## **📌 NLP Exam Library Cheat Sheet (1–13 Problems)**
+
+---
+
+### **1️⃣ `re` (Regular Expressions)**
+
+* **When to use:** Extract emails, phone numbers, URLs, hashtags, mentions, dates, offensive words.
+* **Key functions:**
+
+  * `re.findall(pattern, text)` → Extract matches
+  * `re.sub(pattern, repl, text)` → Replace/remove unwanted parts
+
+---
+
+### **2️⃣ `nltk` (Natural Language Toolkit)**
+
+* **When to use:**
+
+  * Tokenization (word/sentence)
+  * N-Grams (unigrams, bigrams, trigrams)
+  * Stopword removal
+  * POS tagging
+  * Stemming / Lemmatization
+  * Edit distance
+  * Chunking
+  * HMM POS Tagging
+* **Key functions:**
+
+  * `nltk.word_tokenize(text)`
+  * `nltk.pos_tag(tokens)`
+  * `ngrams(tokens, n)`
+  * `stopwords.words('english')`
+  * `PorterStemmer().stem(word)` / `LancasterStemmer().stem(word)`
+  * `WordNetLemmatizer().lemmatize(word)`
+  * `edit_distance(word1, word2)`
+  * `RegexpParser(grammar).parse(tags)`
+
+---
+
+### **3️⃣ `spacy`**
+
+* **When to use:**
+
+  * POS tagging (Universal POS tags)
+  * Named Entity Recognition (NER)
+  * Stopword removal (token.is\_stop)
+  * Tokenization (token.text)
+* **Key functions:**
+
+  * `spacy.load("en_core_web_sm")`
+  * `doc = nlp(text)`
+  * `token.pos_`, `token.is_stop`
+  * `doc.ents` (ent.text, ent.label\_)
+
+---
+
+### **4️⃣ `transformers` (HuggingFace)**
+
+* **When to use:**
+
+  * BERT tokenization (subword tokens)
+  * POS / NER with pretrained models
+* **Key functions:**
+
+  * `BertTokenizer.from_pretrained("bert-base-uncased")`
+  * `.tokenize(text)`
+  * `pipeline("token-classification", model="dslim/bert-base-NER")`
+
+---
+
+### **5️⃣ `string`**
+
+* **When to use:** Remove punctuation during text cleaning.
+* **Key functions:**
+
+  * `string.punctuation` → all punctuation symbols
+
+---
+
+### **6️⃣ `nltk.corpus.brown` & `nltk.tag.hmm`**
+
+* **When to use:** Train Hidden Markov Model (HMM) POS Tagger.
+* **Key functions:**
+
+  * `brown.tagged_sents()`
+  * `HiddenMarkovModelTrainer().train_supervised()`
+
+---
+
+💡 **Memory Trick**
+
+* **Regex (re)** → Pattern finding (emails, phones, hashtags)
+* **NLTK** → *Basics of NLP* (tokenizing, stopwords, POS, stemming, lemmatization, edit distance, chunking)
+* **SpaCy** → *Advanced NLP* (POS Universal tags, NER, stopword flags)
+* **Transformers** → *Deep Learning NLP* (BERT subwords, NER)
+* **String** → Remove punctuation
+* **Brown/HMM** → Statistical POS tagging
+
+---
+
+👉 Question for you:
+Do you want me to also make a **problem → library map** (like *Problem 1: Regex → re*, *Problem 2: N-grams → nltk*, …) so you instantly know which library to call for each question? That will make exam navigation much faster.
+Perfect ✅ You basically want a **master cheat sheet** for all NLP lab problems so you can recall **logic + syntax quickly** without re-reading everything.
+
+Here’s a **compact but complete revision pack**:
+
+---
+
+# 📜 **🔥 NLP PRACTICAL REVISION NOTES (Quick Recall + Syntax Tricks)**
+
+---
+
+## **1️⃣ REGEX – Information Extraction**
+
+**Tasks:** Email, Phone, URL, Hashtag, Mention, Offensive Words
+
+**Memory Trick:**
+👉 *Think “EP-UHM” → Email, Phone, URL, Hashtag, Mention*
+
+**Syntax:**
+
+```python
+import re
+text = """..."""  
+
+emails   = re.findall(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}", text)
+phones   = re.findall(r"\+91-\d{10}", text)
+urls     = re.findall(r"https?://\S+", text)
+hashtags = re.findall(r"#\w+", text)
+mentions = re.findall(r"@\w+", text)
+offensive_words = [w for w in ["badword1","badword2","spamword"] if w in text]
+```
+
+✅ **Tip:** All patterns are `re.findall(r"PATTERN", text)`.
+
+---
+
+## **2️⃣ N-GRAMS – Context Capture**
+
+**Memory Trick:**
+👉 *Ngrams → n=1,2,3 = Unigrams, Bigrams, Trigrams*
+
+**Syntax:**
+
+```python
+from nltk.util import ngrams
+import nltk; nltk.download('punkt')
+tokens = nltk.word_tokenize(text)
+list(ngrams(tokens, 1))  # Uni
+list(ngrams(tokens, 2))  # Bi
+list(ngrams(tokens, 3))  # Tri
+```
+
+✅ **Tip:** Bigger n = more context.
+
+---
+
+## **3️⃣ EDIT DISTANCE (Levenshtein)**
+
+**Memory Trick:**
+👉 `edit_distance(w1,w2)` from `nltk.metrics`
+
+**Syntax:**
+
+```python
+from nltk.metrics import edit_distance
+edit_distance("kitten","sitting")  # → 3
+```
+
+---
+
+## **4️⃣ CHUNKING – Noun Phrases**
+
+**Memory Trick:**
+👉 *Grammar `"NP: {<DT>?<JJ>*<NNP>+}"` → DT optional, JJ adjectives, NNP proper noun*
+
+**Syntax:**
+
+```python
+grammar = "NP: {<DT>?<JJ>*<NNP>+}"
+chunk_parser = nltk.RegexpParser(grammar)
+tree = chunk_parser.parse(nltk.pos_tag(nltk.word_tokenize(sentence)))
+tree.draw()
+```
+
+---
+
+## **5️⃣ NER – Named Entities**
+
+**Memory Trick:**
+👉 *SpaCy → `for ent in nlp(text).ents: print(ent.text, ent.label_)`*
+
+**Syntax:**
+
+```python
+import spacy
+nlp = spacy.load("en_core_web_sm")
+for ent in nlp(text).ents:
+    print(ent.text, ent.label_)
+```
+
+---
+
+## **6️⃣ TOKENIZATION – Word / Char / Subword**
+
+**Memory Trick:**
+👉 `NLTK=word_tokenize | SpaCy=token.text | BERT=tokenizer.tokenize`
+
+**Syntax:**
+
+```python
+nltk.word_tokenize(text)            # Word (NLTK)
+[token.text for token in nlp(text)] # Word (SpaCy)
+list(text)                          # Char
+tokenizer.tokenize(text)            # Subword
+```
+
+---
+
+## **7️⃣ STOPWORD REMOVAL**
+
+**Memory Trick:**
+👉 *NLTK → T-S-F (Tokenize, Stopwords, Filter)*
+👉 *SpaCy → N-F (NLP, Filter token.is\_stop)*
+
+**Syntax:**
+
+```python
+# NLTK
+nltk_filtered = [w for w in nltk.word_tokenize(text) if w.lower() not in stopwords.words('english')]
+# SpaCy
+spacy_filtered = [t.text for t in nlp(text) if not t.is_stop]
+```
+
+---
+
+## **8️⃣ STEMMING vs LEMMATIZATION**
+
+**Memory Trick:**
+👉 *Porter = light cut, Lancaster = aggressive cut, Lemma = correct word*
+
+**Syntax:**
+
+```python
+porter.stem(w); lancaster.stem(w); lemmatizer.lemmatize(w)
+```
+
+---
+
+## **9️⃣ NOISE REMOVAL**
+
+**Memory Trick:**
+👉 *Lower → Remove symbols → Extra spaces*
+
+**Syntax:**
+
+```python
+text = text.lower()
+text = re.sub(r"@\w+|#\w+|http\S+|[^a-zA-Z\s]", "", text)
+text = re.sub(r"\s+", " ", text).strip()
+```
+
+---
+
+## **🔟 POS TAGGING – NLTK vs SpaCy**
+
+**Memory Trick:**
+👉 *NLTK → pos\_tag(tokenize) → Penn tags
+SpaCy → token.pos\_ → Universal tags*
+
+**Syntax:**
+
+```python
+# NLTK
+nltk.pos_tag(nltk.word_tokenize(text))
+# SpaCy
+[(t.text, t.pos_) for t in nlp(text)]
+```
+
+---
+
+## **1️⃣1️⃣ RULE-BASED POS (RegexpTagger)**
+
+**Memory Trick:**
+👉 *Patterns list → RegexpTagger(patterns).tag(sentence)*
+
+**Syntax:**
+
+```python
+patterns=[(r'.*ing$','VBG'), (r'^Ravi$','NNP'), (r'.*','NN')]
+RegexpTagger(patterns).tag(words)
+```
+
+---
+
+## **1️⃣2️⃣ HMM POS TAGGER**
+
+**Memory Trick:**
+👉 *Brown corpus → train\_supervised → tag(sentence)*
+
+**Syntax:**
+
+```python
+from nltk.corpus import brown
+from nltk.tag import hmm
+train = brown.tagged_sents(categories='news', tagset='universal')[:500]
+tagger = hmm.HiddenMarkovModelTrainer().train_supervised(train)
+tagger.tag(sentence.split())
+```
+
+---
+
+## **1️⃣3️⃣ BERT POS / NER**
+
+**Memory Trick:**
+👉 *HuggingFace pipeline(“token-classification”)*
+
+**Syntax:**
+
+```python
+from transformers import pipeline
+nlp_pipe = pipeline("token-classification", model="dslim/bert-base-NER")
+nlp_pipe(text)
+```
+
+---
+
+# 🎯 **How to Memorize All This**
+
+* **Group by topic** (Regex, Tokenization, Stopwords, POS, NER)
+* **Remember just key functions** per library:
+
+  * **NLTK:** `word_tokenize`, `pos_tag`, `RegexpParser`, `edit_distance`, `stopwords`, `stem()`
+  * **SpaCy:** `nlp(text)`, `token.text`, `token.pos_`, `token.is_stop`
+  * **HuggingFace:** `pipeline("token-classification")`
+* **Practice once** in VS Code → after running, focus on **remembering function names** (syntax auto-completes in exam).
+
+---
+
+👉 I can also make this into a **one-page “Visual Cheat Sheet”** (tables + arrows for each task).
+That will help you recall all syntax instantly.
+
+Do you want me to create that one-page diagram for quick exam revision? (It will be much easier than reading all text.)
