@@ -117,3 +117,13 @@ tree.draw()
 👉 If you want, I can create a **one-page visual cheat sheet** (with NP, VP, PP grammar + diagram) so you can quickly revise chunking rules before practice.
 Do you want that?
 """
+# ===== ALGORITHM =====
+# 1. Tokenize + POS tag sentence
+# 2. Define chunk grammar for NPs (e.g. <DT>?<JJ>*<NNP>+)
+# 3. Create RegexpParser
+# 4. Parse tags & visualize/print
+
+# ===== EXAM POINTS =====
+# * Chunking groups words (e.g. noun phrases)
+# * Grammar uses POS tags: DT=det, JJ=adj, NNP=proper noun
+# * tree.draw() (optional in lab)

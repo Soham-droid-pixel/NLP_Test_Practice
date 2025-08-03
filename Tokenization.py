@@ -89,3 +89,14 @@ print(bert_tokens)
 👉 If you want, I can also make you a **one-page visual “Tokenization Cheat Sheet”** with a small diagram (NLTK → SpaCy → Char → BERT) so you can revise just before exam without reading code.
 Do you want that?
 """
+
+# ===== ALGORITHM =====
+# 1. NLTK → word_tokenize
+# 2. SpaCy → token.text in nlp(text)
+# 3. Character tokens → list(text)
+# 4. Subword tokens → BertTokenizer.tokenize()
+
+# ===== EXAM POINTS =====
+# * Word tokens: simple split by words
+# * Char tokens: for unknown/misspelled handling
+# * Subword tokens: handles unknown words by breaking

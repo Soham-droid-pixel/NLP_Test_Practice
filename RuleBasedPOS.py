@@ -14,3 +14,12 @@ tagger=RegexpTagger(patterns)
 tokens=nltk.word_tokenize(sentence)
 Rule_based=tagger.tag(tokens)
 print("Rule Based taggers: ",Rule_based)
+
+# ===== ALGORITHM =====
+# 1. Define regex patterns for suffixes/words
+# 2. Create RegexpTagger(patterns)
+# 3. Tag sentence
+
+# ===== EXAM POINTS =====
+# * Works only for known patterns
+# * Fails on unseen forms

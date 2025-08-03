@@ -13,3 +13,12 @@ doc=nlp(text)
 spacy_taggers=[(token.text,token.pos_)for token in doc]
 print("NLTK taggers:",nltk_taggers)
 print("Spacy taggers:",spacy_taggers)
+
+# ===== ALGORITHM =====
+# 1. NLTK → pos_tag(word_tokenize(text))
+# 2. SpaCy → (token.text, token.pos_)
+# 3. Compare outputs
+
+# ===== EXAM POINTS =====
+# * NLTK uses Penn Treebank (NN, VBZ, VBG)
+# * SpaCy uses Universal POS (NOUN, VERB, PROPN)

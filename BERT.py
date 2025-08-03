@@ -14,3 +14,12 @@ for item in output:
 #    ORG = Organization, DATE = Date
 # 5. Pretrained model → No training needed
 # ==========================================================
+
+# ===== ALGORITHM =====
+# 1. Use pipeline("token-classification", model="dslim/bert-base-NER")
+# 2. Pass text
+# 3. Loop output → print word, entity, score
+
+# ===== EXAM POINTS =====
+# * B-PER/I-PER = person, ORG=organization, DATE=date
+# * Transformer models = pretrained, no training required

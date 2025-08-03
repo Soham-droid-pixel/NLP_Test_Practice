@@ -91,3 +91,12 @@ Or remember:
 
 👉 Question: Do you want me to give you a **one-page diagram (flow chart)** that visually shows NLTK vs SpaCy steps side by side (2 arrows each) so it’s stuck in your head? That would be exam gold.
 """
+
+# ===== ALGORITHM =====
+# 1. NLTK: stopwords.words('english') → filter out
+# 2. SpaCy: token.is_stop == False
+# 3. Compare before vs after counts
+
+# ===== EXAM POINTS =====
+# * Stopwords = remove common words (is, the, an)
+# * Reduces noise for text analysis

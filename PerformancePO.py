@@ -40,3 +40,12 @@ So summing gives number of correct predictions.
 Divides correct predictions by total predictions.
 
 Gives accuracy as a fraction (e.g., 1.0 = 100% correct)."""
+
+# ===== ALGORITHM =====
+# 1. Create gold tags list
+# 2. Predict with NLTK & SpaCy
+# 3. Compare tags using accuracy formula
+# 4. Print accuracy
+
+# ===== EXAM POINTS =====
+# * Accuracy = correct tags / total tags

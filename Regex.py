@@ -17,4 +17,26 @@ print("Hashtags:",hashtags)
 print("Mentions:",mentions)
 print("Offensive words:",offensive_words)
 
+# ===== ALGORITHM =====
+# 1. Import re
+# 2. Store text in a variable
+# 3. Use re.findall() for:
+#    - Email: pattern like user@domain
+#    - Phone: +91-XXXXXXXXXX
+#    - URL: starts with http/https
+#    - Hashtag: starts with #
+#    - Mention: starts with @
+# 4. Offensive words: loop over bad words list & check if in text
+# 5. Print extracted items
+
+# ===== EXAM POINTS =====
+# * re.findall(pattern, text) → returns all matches
+# * Common patterns:
+#   Email: r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+#   Phone (India): r"\+91-\d{10}"
+#   URL: r"https?://\S+"
+#   Hashtag: r"#\w+"
+#   Mention: r"@\w+"
+# * Offensive check = simple membership in string
+
 

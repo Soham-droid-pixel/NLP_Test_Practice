@@ -33,3 +33,12 @@ print("HMM tags are:",hmm_tagger.tag(sentence.split()))
 # ✅ Statistical POS tagging
 # ✅ Works well with enough training data
 # ================================================================
+
+# ===== ALGORITHM =====
+# 1. Load Brown corpus tagged_sents
+# 2. Train with HiddenMarkovModelTrainer
+# 3. Tag new sentence
+
+# ===== EXAM POINTS =====
+# * HMM learns tag probabilities
+# * Small training = lower accuracy
